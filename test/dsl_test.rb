@@ -75,16 +75,17 @@ class DSLTest < ActiveSupport::TestCase
     posts = Post.where(:comments).count.ge(2).first
     assert_equal @caelum, posts
   end
-   
-  test "all post which commits has some description" do
-    comment = Comment.create :description => "dsl test"
-    @caelum.update_attributes :comments => [comment]
 
-    posts = Post.where(:comments).description.like?("%dsl test%")
-    assert_equal @caelum, posts[0]
-    assert_equal 1, posts.size
-
-  end
+#    pending
+  # test "all post which commits has some description" do
+  #   comment = Comment.create :description => "dsl test"
+  #   @caelum.update_attributes :comments => [comment]
+  # 
+  #   posts = Post.where(:comments).description.like?("%dsl test%")
+  #   assert_equal @caelum, posts[0]
+  #   assert_equal 1, posts.size
+  # 
+  # end
 
   test "exists posts using strict extended methods" do
     @caelum.update_attributes(:comments => [Comment.create, Comment.create]) 
@@ -110,13 +111,14 @@ class DSLTest < ActiveSupport::TestCase
     assert_equal 1, posts.size
   end
 
-  test "all post which commits has some subject" do
-    comment = Comment.create :subject => "dsl subject"
-    @caelum.update_attributes :comments => [comment]
-    posts = Post.where(:comments).subject.like?("%dsl subject%")
-    assert_equal @caelum, posts[0]
-    assert_equal 1, posts.size
-  end
+# pending
+  # test "all post which commits has some subject" do
+  #   comment = Comment.create :subject => "dsl subject"
+  #   @caelum.update_attributes :comments => [comment]
+  #   posts = Post.where(:comments).subject.like?("%dsl subject%")
+  #   assert_equal @caelum, posts[0]
+  #   assert_equal 1, posts.size
+  # end
   
   test "accepts two conditions inline" do
     @caelum.update_attributes :published_at => 1.year.ago
